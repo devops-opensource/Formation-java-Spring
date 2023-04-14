@@ -1,0 +1,11 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    username: sa
+    password:
+
+my:
+  personalised:
+    variable: "je suis sur le profile localhost"
