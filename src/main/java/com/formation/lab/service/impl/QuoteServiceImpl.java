@@ -3,7 +3,6 @@ package com.formation.lab.service.impl;
 import com.formation.lab.resource.QuoteResource;
 import com.formation.lab.service.QuoteService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
@@ -14,14 +13,18 @@ import java.util.Map;
 @Service
 public class QuoteServiceImpl implements QuoteService {
 
-  @Autowired
-  WebClient webClient;
+
+  private final WebClient webClient;
 
   @Value("${alphaVantagePath}")
   private String alphaVantagePath;
 
   @Value("${token}")
   private String token;
+
+  public QuoteServiceImpl(WebClient webClient) {
+    this.webClient = webClient;
+  }
 
   @Override
   public QuoteResource getQuote(String ticker) {
