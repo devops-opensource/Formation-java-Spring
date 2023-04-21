@@ -1,6 +1,7 @@
 package com.formation.lab.service.impl;
 
 import com.formation.lab.entity.User;
+import com.formation.lab.exception.ResourceNotFoundException;
 import com.formation.lab.repository.UserRepository;
 import com.formation.lab.service.UserService;
 import org.slf4j.Logger;
@@ -34,6 +35,9 @@ public class UserServiceImpl implements UserService {
     public User getUser(Long id) {
         logger.info("retour du user avec l'id :" + id);
         Optional<User> user = userRepository.findById(id);
+        if(user.isEmpty()){
+            throw new ResourceNotFoundException(String.format("User with id %s not found in database", id));
+        }
         return user.get();
     }
 }
