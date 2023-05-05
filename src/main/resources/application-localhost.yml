@@ -9,3 +9,6 @@ spring:
 my:
   personalised:
     variable: "je suis sur le profile localhost"
+
+token: "TOKEN"
+alphaVantagePath: "https://www.alphavantage.co/query?"
