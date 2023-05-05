@@ -1,5 +1,6 @@
 package com.formation.lab.controller;
 
+import com.formation.lab.dto.UserDto;
 import com.formation.lab.entity.User;
 import com.formation.lab.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,12 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public UserDto createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable("id") Long id) {
+    public UserDto getUser(@PathVariable("id") Long id) {
        return userService.getUser(id);
     }
 

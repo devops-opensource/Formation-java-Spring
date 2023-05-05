@@ -1,6 +1,8 @@
 package com.formation.lab.service.impl;
 
+import com.formation.lab.dto.UserDto;
 import com.formation.lab.entity.User;
+import com.formation.lab.mapper.UserMapperImpl;
 import com.formation.lab.repository.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -9,11 +11,13 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
+@SpringBootTest(classes = {UserMapperImpl.class})
 public class UserServiceImplTest {
 
     @InjectMocks
@@ -35,7 +39,7 @@ public class UserServiceImplTest {
     @Test
     public void createUser() {
         when(userRepository.save(any(User.class))).thenReturn(user);
-        User result = simpleService.createUser(user);
+        UserDto result = simpleService.createUser(user);
 
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result.getFirstName()).isEqualTo(USERNAME);
