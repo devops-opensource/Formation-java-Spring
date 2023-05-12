@@ -11,4 +11,6 @@ public interface DealMapper {
     DealMapper INSTANCE = Mappers.getMapper(DealMapper.class);
 
     DealDto dealToDealDto(Deal deal);
+
+    Deal dtoToDeal(DealDto dealDto);
 }
