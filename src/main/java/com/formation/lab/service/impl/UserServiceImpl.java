@@ -1,7 +1,9 @@
 package com.formation.lab.service.impl;
 
+import com.formation.lab.dto.UserDto;
 import com.formation.lab.entity.User;
 import com.formation.lab.exception.ResourceNotFoundException;
+import com.formation.lab.mapper.UserMapper;
 import com.formation.lab.repository.UserRepository;
 import com.formation.lab.service.UserService;
 import org.slf4j.Logger;
@@ -25,19 +27,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
+    public UserDto createUser(User user) {
         logger.info("création d'un nouvel utilisateur");
         User newUser = userRepository.save(user);
-        return newUser;
+        return UserMapper.INSTANCE.userToUserDto(newUser);
     }
 
     @Override
-    public User getUser(Long id) {
+    public UserDto getUser(Long id) {
         logger.info("retour du user avec l'id :" + id);
         Optional<User> user = userRepository.findById(id);
         if(user.isEmpty()){
             throw new ResourceNotFoundException(String.format("User with id %s not found in database", id));
         }
-        return user.get();
+        return UserMapper.INSTANCE.userToUserDto(user.get());
     }
 }
